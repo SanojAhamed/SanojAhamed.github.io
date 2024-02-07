@@ -944,7 +944,7 @@ h2 {
     justify-content: center;
     border-radius: 25px;
     padding: 0 30px;
-    margin-left: -80px;
+    margin-left: -60px;
   }
 
   textarea.input1 {
@@ -952,6 +952,6 @@ h2 {
     border-radius: 25px;
     padding: 12px 30px;
     width: 170%;
-    margin-left: -80px;
+    margin-left: -60px;
   }
 }

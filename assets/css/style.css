@@ -925,3 +925,33 @@ h2 {
     margin-left: -80px;
   }
 }
+
+@media screen and (max-width: 460px) {
+  .contact1-pic {
+    display: none;
+  }
+
+   .contact-des {
+    font-size: 16px;
+    color: #fff;
+    width: 100%;
+    margin: auto;
+  }
+
+  input.input1 {
+    height: 59px;
+    width: 170%;
+    justify-content: center;
+    border-radius: 25px;
+    padding: 0 30px;
+    margin-left: -80px;
+  }
+
+  textarea.input1 {
+    min-height: 150px;
+    border-radius: 25px;
+    padding: 12px 30px;
+    width: 170%;
+    margin-left: -80px;
+  }
+}

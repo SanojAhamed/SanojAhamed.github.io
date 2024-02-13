@@ -14,39 +14,6 @@
   line-height: 1.6;
 }
 
-/* header section */
-
-/* .header {
-  position: fixed;
-  top: 0;   
-  left: 0;
-  width: 100%;
-  background: transparent;
-  padding: 0px 100px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: 0.6s;
-  z-index: 100;
-}
-
-.container {
-  max-width: 1300px;
-  margin: auto;
-  padding: 0px 50px;
-}
-
-.header .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.header .active {
-  background-color: #fff;
-  box-shadow: 10px;
-} */
-
 .navbar-toggler.collapsed {
   background-color: #343a40 !important;
 } 

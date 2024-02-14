@@ -126,6 +126,10 @@ ul {
   opacity: 1;
 }
 
+/* .tools-list {
+  margin-right: 10px;
+} */
+
 /* responsive for larger than 550px screen*/
 
 @media (min-width: 550px) {
@@ -208,4 +212,10 @@ ul {
 @media screen and (max-width: 550px){
   .skills-list {
     margin-left: -30px;
+}
+
+.tools-list {
+  margin-right: 40px;
+}
+
 }

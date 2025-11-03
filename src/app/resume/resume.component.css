@@ -1,0 +1,56 @@
+.resume-col-2 {
+	padding-top: 30px;
+}
+
+.resume_tabs ul {
+	padding: 0;
+	margin: 0;
+}
+
+.resume_tabs ul li {
+	display: inline-block;
+	list-style: none;
+	margin: 0 8px;
+}
+
+.resume_tabs ul li a {
+	display: inline-block;
+	text-decoration: none;
+	color: #222;
+	font-weight: 600;
+}
+
+.resume_tabs ul li { cursor: pointer; }
+
+/* default white pill */
+.resume_tabs ul li {
+	background: #fff;
+	border-radius: 10px;
+	box-shadow: 0 6px 14px rgba(0,0,0,0.06);
+}
+
+/* Active tab: red background and white text */
+.resume_tabs ul li.active {
+	background: #ff2929;
+	transform: translateY(-2px);
+}
+
+.resume_tabs ul li.active a {
+	color: #fff;
+}
+
+/* small responsive tweak */
+@media (max-width: 600px) {
+	.resume_tabs ul li a { padding: 10px 18px; }
+}
+
+/* keep existing visual when not-active */
+.resume_tabs ul li:not(.active) a:hover {
+	color: #ff2929;
+}
+
+/* ensure focus outline for accessibility */
+.resume_tabs ul li a:focus {
+	outline: 2px solid rgba(255,41,41,0.3);
+	outline-offset: 2px;
+}

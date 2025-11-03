@@ -14,9 +14,9 @@
 }
 
 ul {
-  List-style: none;
-  Padding: 0;
-  Margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .skills {

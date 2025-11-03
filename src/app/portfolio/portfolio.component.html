@@ -1,0 +1,99 @@
+<section id="Portfolio">
+  <div class="container py-5">
+    <h2 class="section_title">Personal Projects</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4 py-5">
+
+        <div class="col">
+        <div class="card">
+          <img src="assets/images/eventhub.png" height="180px" width="320px" class="card-img-top">
+          <div class="card-body">
+            <div>
+              <a href="https://github.com/SanojAhamed/EventHub" target="_blank" rel="noreferrer"
+                alt="web3" class="blog-author">EventHub - Event Management System</a>
+            </div>
+            <p class="card-text">EventHub is a comprehensive event management system that streamlines the process of
+              organizing and managing events, from registration to ticketing and attendee engagement.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card">
+          <img src="assets/images/monitopet.png" height="180px" width="320px" class="card-img-top" alt="Monito Pet screenshot">
+          <div class="card-body">
+            <div>
+              <a href="https://github.com/SanojAhamed/Monito-Pet" target="_blank" rel="noreferrer"
+                alt="Monito Pet" class="blog-author">Monito Pet</a>
+            </div>
+            <p class="card-text">Monito Pet, home for lovers of pets. You can find here all about the different kinds of pets, how to take care of a pet, or review some pet products.</p>
+          </div>
+        </div>
+      </div>
+
+       <div class="col">
+        <div class="card">
+          <img src="assets/images/pickme.png" height="180px" width="320px" class="card-img-top">
+          <div class="card-body">
+            <div><a href="https://github.com/SanojAhamed/Hotstar-Clone" target="_blank" rel="noreferrer" alt="web3"
+                class="blog-author">Pickme Clone</a></div>
+            <p class="card-text">Sri Lanka's most successful start-up business in recent times, we envision the intelligent upgrade of the local transportation industry.</p>
+          </div>
+        </div>
+      </div>
+
+       <div class="col">
+        <div class="card">
+          <img src="assets/images/deli.png" height="180px" width="320px" class="card-img-top">
+          <div class="card-body">
+            <div>
+              <a href="https://github.com/SanojAhamed/Online-Food-Ordering-System" target="_blank" rel="noreferrer"
+                alt="web3" class="blog-author">Deli - Online Food Ordering System</a>
+            </div>
+            <p class="card-text">Online Food Ordering System Includes the Entire Process of Ordering Food through a
+              Digital Platform.</p>
+          </div>
+        </div>
+      </div>
+
+       <div class="col">
+        <div class="card">
+          <img src="assets/images/hotstarclone.png" height="180px" width="320px" class="card-img-top">
+          <div class="card-body">
+            <div><a href="https://github.com/SanojAhamed/Hotstar-Clone" target="_blank" rel="noreferrer" alt="web3"
+                class="blog-author">Hotstar Clone</a></div>
+            <p class="card-text">Disney+ Hotstar, providing a platform for streaming a wide range of movies, TV shows,
+              sports, and more.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card">
+          <img src="assets/images/chatbot.png" height="180px" width="320px" class="card-img-top">
+          <div class="card-body">
+            <div><a href="https://github.com/SanojAhamed/Chatbot-using-API" target="_blank" rel="noreferrer" alt="web3"
+                class="blog-author">Chatbot-using-API</a></div>
+            <p class="card-text">Chatbot-using-API is a project that demonstrates how to build a chatbot using the OpenAI API. It includes features like natural language understanding, context management, and more.</p>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="col" *ngIf="showMoreProjects">
+        <div class="card">
+          <img src="assets/images/quizzify.png" height="180px" width="320px" class="card-img-top">
+          <div class="card-body">
+            <div><a href="https://github.com/SanojAhamed/Quizzify" target="_blank" rel="noreferrer" alt="web3"
+                class="blog-author">Quizzify - Online Quiz Platform</a></div>
+            <p class="card-text">Online Food Ordering System Includes the Entire Process of Ordering Food through a
+              Digital Platform.</p>
+          </div>
+        </div>
+      </div>
+     
+    </div>
+    <div class="text-center">
+      <button class="btn btn-primary" style="background-color: #ff2929; border: none; border-radius: 15px;" id="viewMoreBtn" *ngIf="!showMoreProjects" (click)="onViewMore()">View More</button>
+    </div>
+  </div>
+</section>

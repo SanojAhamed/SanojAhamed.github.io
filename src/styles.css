@@ -1,0 +1,8 @@
+/* Global styles for the Angular app — we keep most styling in original CSS files under assets/css and reference them via angular.json styles. */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+app-root {
+  display: block;
+}

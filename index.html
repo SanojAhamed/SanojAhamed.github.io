@@ -16,12 +16,20 @@
     <link rel="stylesheet" href="assets/css/my.css" />
     <link rel="stylesheet" href="assets/css/contact.css">
 
-    <!-- GOOGLE FONT LINK -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Roboto:wght@400;700&family=Saira+Stencil+One&display=swap"
-        rel="stylesheet" />
+        <!-- Load Google Fonts at runtime to avoid build-time inlining failures -->
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <script>
+            (function(){
+                try {
+                    var l = document.createElement('link');
+                    l.href = 'https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Roboto:wght@400;700&family=Saira+Stencil+One&display=swap';
+                    l.rel = 'stylesheet';
+                    document.head.appendChild(l);
+                } catch (e) {
+                    console.warn('Could not load Google Fonts at runtime', e);
+                }
+            })();
+        </script>
     <!-- box icons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
@@ -29,11 +37,13 @@
     <link href="./assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <!-- Tailwind CDN for quick utility classes (no build step) -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark mobile-shadow p-md-3">
-        <div class="container">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark mobile-shadow">
+        <div class="container-fluid">
             <a class="navbar-brand" href="#"><img src="./file/logopic.png" alt="logo" class="logo-img"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

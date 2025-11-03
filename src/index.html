@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Sanoj Ahamed</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="../file/tablogo.png">
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+
+    <!-- Fonts & icons (kept from original) -->
+    <!-- Load Google Fonts at runtime to avoid build-time inlining which can fail behind restricted networks -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script>
+      (function(){
+        try {
+          var l = document.createElement('link');
+          l.href = 'https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Roboto:wght@400;700&family=Saira+Stencil+One&display=swap';
+          l.rel = 'stylesheet';
+          document.head.appendChild(l);
+        } catch (e) {
+          console.warn('Could not load Google Fonts at runtime', e);
+        }
+      })();
+    </script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Keep remote scripts that were loaded via CDN in original page -->
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script src="https://kit.fontawesome.com/398e6630c8.js" crossorigin="anonymous"></script>
+    <!-- Tailwind CDN for utility classes (fast, zero-build) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <app-root></app-root>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+<div class="contact-me-section" id="Contact">
+  <div class="contact1 bg-dark pb-1">
+    <div class="col-md-12 text-align text-center fs-2 text-white">Contact me</div>
+    <div class="contact-des col-md-12 text-align text-center fs-8 text-white">Let's Make a clear conversation!</div>
+    <div class="container-contact1">
+      <div class="contact1-pic" data-tilt><img src="assets/images/message.png" alt="Contact"></div>
+
+      <form class="contact1-form validate-form" (submit)="onSubmitContact($event)" novalidate>
+        <div class="wrap-input1 validate-input" data-validate="Name is required">
+          <input class="input1" type="text" name="name" placeholder="Name" required>
+          <span class="shadow-input1"></span>
+        </div>
+        <div class="wrap-input1 validate-input" data-validate="Valid email is required: example@gmail.com">
+          <input class="input1" type="email" name="email" placeholder="Email" required>
+          <span class="shadow-input1"></span>
+        </div>
+        <div class="wrap-input1 validate-input" data-validate="Subject is required">
+          <input class="input1" type="text" name="subject" placeholder="Subject" required>
+          <span class="shadow-input1"></span>
+        </div>
+        <div class="wrap-input1 validate-input" data-validate="Message is required">
+          <textarea class="input1" name="message" placeholder="Message" required></textarea>
+          <span class="shadow-input1"></span>
+        </div>
+        <div class="container-contact1-form-btn">
+          <button class="contact1-form-btn" [disabled]="isSending">
+            <span>{{ isSending ? 'Sending...' : 'Send Message' }} <i class="fa fa-long-arrow-right" aria-hidden="true"></i></span>
+          </button>
+        </div>
+        <div class="text-center mt-3" aria-live="polite">
+          <span *ngIf="submitSuccess === true" class="text-white">Thanks! Your message was sent.</span>
+          <span *ngIf="submitSuccess === false" class="text-danger">Sorry, sending failed. Please try again later.</span>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-12 text-align text-center pt-5">
+      <img src="file/logopic.png" width="200px" alt="" class="img-fluid mx-auto">
+      <p class="footer text-white ">All rights reserved © {{ currentYear }} | Made with ❤️ Sanoj Ahamed</p>
+    </div>
+  </div>
+</div>

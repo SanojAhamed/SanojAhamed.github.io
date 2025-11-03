@@ -1,0 +1,116 @@
+/* Stats card FA icons */
+.stats-card .card-icon {
+  width: 40px;
+  height: 40px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50% !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  flex: 0 0 auto;
+}
+.stats-card .card-icon i { color: #fff !important; font-size: 22px; line-height: 1; }
+
+@media (max-width: 650px) {
+  .stats-card { padding: 12px; }
+  .stats-card .card-icon { width: 28px; height: 28px; aspect-ratio: 1 / 1; }
+  .stats-card .card-icon i { font-size: 14px !important; line-height: 1; }
+  .stats-card .card-title { margin-top: 6px; }
+}
+
+/* Stats cards: show as white boxed blocks with shadow */
+.about .stats-list {
+  display: flex;
+  gap: 28px;
+  justify-content: center;
+  align-items: stretch;
+  list-style: none;
+  padding: 0;
+  margin: 2.25rem 0 0 0;
+}
+
+.about .stats-list li { display: flex; }
+
+.about .stats-card {
+  background: #fff;
+  padding: 20px 22px;
+  border-radius: 12px;
+  box-shadow: 0 14px 30px rgba(22, 22, 22, 0.06);
+  border: 1px solid rgba(29,29,29,0.04);
+  min-width: 200px;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  padding-top: 44px; /* space for overlapping icon */
+}
+
+.about .stats-card .card-icon {
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #ff2929 !important; /* solid red circle */
+  color: #fff !important; /* white icon */
+  margin-bottom: 12px;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.08) !important;
+  position: absolute;
+  top: -32px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid rgba(255,255,255,1) !important; /* white halo matching card */
+}
+
+.about .stats-card .card-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1;
+}
+
+.about .stats-card .card-title strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  margin-top: 8px;
+}
+
+@media (max-width: 767.98px) {
+  .about .stats-list {
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+  }
+  .about .stats-card { width: 100%; max-width: 420px; }
+  .about .stats-card .card-icon { width: 56px; height: 56px; }
+  .about .stats-card .card-icon i { font-size: 18px !important; }
+  .about .stats-card { padding-top: 36px; }
+}
+
+/* Force the profile image frame to be visible even if global rules override it */
+section.about .about-img img,
+.about .about-img img {
+  width: 100% !important;
+  max-width: 320px !important;
+  display: block !important;
+  border-radius: 20px !important;
+  margin-bottom: 20px !important;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.22) !important;
+  border: none !important; 
+  object-fit: cover !important;
+}
+
+@media (max-width: 767.98px) {
+  section.about .about-img img,
+  .about .about-img img {
+    max-width: 220px !important;
+    border: none !important;
+    border-radius: 16px !important;
+  }
+}

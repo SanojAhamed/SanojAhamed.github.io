@@ -1,0 +1,16 @@
+/* Contact message image */
+.contact1-pic { 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  isolation: isolate; 
+  box-shadow: none !important;
+  outline: none !important;
+}
+.contact1-pic img {
+  display: block;
+  width: clamp(240px, 36vw, 420px); 
+  height: auto;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}

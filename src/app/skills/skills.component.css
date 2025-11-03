@@ -1,0 +1,26 @@
+/* Hide the text labels for the skill icons as per original CSS */
+.skills-list span,
+.tools-list span {
+  display: none !important;
+}
+
+/* Add horizontal padding so icons don't touch the viewport edge */
+.skills-list, .tools-list {
+  padding-left: 12px;
+  padding-right: 12px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 991px) {
+  /* move icons slightly inward on tablets/phones */
+  .skills-list, .tools-list {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  /* small extra horizontal gutter per item to avoid edge-touching */
+  .skills-list li, .tools-list li {
+    padding-left: 6px !important;
+    padding-right: 6px !important;
+  }
+}

@@ -1,0 +1,116 @@
+body, :host { display: block; }
+.html, body { width: 100%; height: 100%; margin: 0; padding: 0; }
+.bgimage { position: relative; min-height: 100vh; }
+.hero-text { padding-top: 0; }
+.bgimage .hero-text { top: 44% !important; }
+
+@media (max-width: 991.98px) {
+  .bgimage .hero-text { top: 50% !important; }
+  .navbar .navbar-collapse { padding-left: 16px; }
+  .navbar .nav-link { padding-top: 0.75rem !important; padding-bottom: 0.75rem !important; }
+}
+
+/* --- Navbar Styles --- */
+
+.navbar { padding-left: 0 !important; z-index: 1100; position: fixed; top: 0; left: 0; right: 0; width: 100%; margin: 0; box-sizing: border-box; }
+.navbar .container, .navbar .container-fluid {
+  padding-left: 12px !important;
+  padding-right: 12px !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Ensure the container doesn't cause horizontal overflow on small screens */
+.navbar .container-fluid { box-sizing: border-box; width: 100%; padding-left: 12px !important; padding-right: 12px !important; }
+.navbar-brand { margin-left: 0 !important; padding-left: 0 !important; }
+.navbar:not(.bg-dark) {
+  background-color: none;
+  backdrop-filter: blur(0px);
+  border-bottom: none;
+  z-index: 1100; 
+}
+.navbar.is-hidden { opacity: 0; transform: translateY(-10px); pointer-events: none; }
+.navbar.is-visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+.navbar { transition: opacity 200ms ease, transform 200ms ease, background-color 200ms ease; }
+.navbar { padding-top: 0 !important; padding-bottom: 0 !important; min-height: 1.5rem !important; }
+.navbar .nav-link { padding-top: 1.5rem !important; padding-bottom:2rem !important; line-height: 1.25rem; }
+.navbar .navbar-toggler { padding: 0.5rem 0.5rem; line-height: 1; background-color: transparent !important; border: none; box-shadow: none; margin-left: 10px; }
+.navbar .logo-img { height: 145px !important; width: auto !important; margin-left: 50px !important; }
+@media (max-width: 991.98px) {
+  .navbar .logo-img { height: 32px !important; width: auto !important; margin-left: 15px !important; }
+}
+
+/* Ensure the mobile hamburger is visible above the logo and clearly white on dark navbars */
+.navbar .navbar-toggler { z-index: 1200 !important; }
+.navbar .navbar-toggler-icon {
+  /* force white bars for visibility on dark backgrounds */
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,0.95)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+}
+
+/* --- Mobile toggle visibility fixes --- */
+/* Ensure brand uses a stable flex layout so it doesn't grow unexpectedly */
+.navbar .navbar-brand { display: flex; align-items: center; flex: 0 0 auto; z-index: 1250; }
+/* Limit the logo size so it doesn't push the toggler off-screen on narrow viewports */
+.navbar .logo-img { max-width: 150px !important; height: auto !important; margin-left: 15px !important; }
+
+/* Show the toggler only on small screens (matches Bootstrap's navbar-expand-lg breakpoint) */
+@media (max-width: 991.98px) {
+  .navbar .navbar-toggler { display: block !important; margin-left: auto !important; margin-right: 12px !important; position: relative; }
+}
+
+@media (max-width: 576px) {
+  .navbar .logo-img { max-width: 110px !important; margin-left: 12px !important; }
+  .navbar .navbar-toggler { padding: 0.4rem !important; }
+}
+
+/* Prevent horizontal scrolling that hides the toggler off-screen on some devices */
+html, body { overflow-x: hidden; }
+
+/* Make the hero background edge-to-edge on small screens without 100vw tricks */
+@media (max-width: 991.98px) {
+  .bgimage {
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding-top: 56px; /* leave space for fixed navbar */
+    background-position: center top !important;
+    background-size: cover !important;
+    background-attachment: scroll !important;
+  }
+  /* Ensure navbar content aligns with the page edges while navbar fills viewport */
+  .navbar .container, .navbar .container-fluid { padding-left: 12px !important; padding-right: 12px !important; }
+}
+
+/* Additional mobile-safe overrides to ensure the hero is full-bleed and no horizontal seam appears */
+@media (max-width: 991.98px) {
+  html, body { overflow-x: hidden !important; background-color: #ffffff !important; }
+  .bgimage { width: 100% !important; min-height: 60vh !important; padding-top: 56px !important; margin: 0 !important; background-position: center top !important; background-size: cover !important; background-attachment: scroll !important; }
+  .bgimage::before { inset: 0 !important; height: 100% !important; }
+  .hero-text { position: relative !important; transform: none !important; top: auto !important; left: auto !important; padding: 1.5rem 1rem !important; }
+}
+
+@media (min-width: 992px) {
+  .navbar-expand-lg .navbar-collapse { display: flex !important; visibility: visible !important; }
+  .navbar-expand-lg .navbar-nav { flex-direction: row !important; }
+}
+
+/* keep nav links away from the right viewport edge */
+.navbar .navbar-nav { margin-right: 50px !important; }
+@media (max-width: 991.98px) { .navbar .navbar-nav { margin-right: 12px !important; } }
+
+.collapse.navbar-collapse { visibility: visible !important; }
+.navbar-collapse.show { visibility: visible !important; }
+
+@media (max-width: 991.98px) {
+  .navbar .nav-link { padding-top: 0.5rem !important; padding-bottom: 0.5rem !important; }
+  .navbar .navbar-nav .nav-item { margin: 0 !important; }
+}
+
+/* General button style (used in Home and Portfolio) */
+.main-btn { display: inline-flex; align-items: center; justify-content: center; width: auto !important; height: auto !important; min-height: 48px; line-height: 1; padding: 12px 28px; white-space: nowrap; border-radius: 14px; }
+
+/* Global Section Titles */
+.section_title { text-align: center; margin-bottom: 3rem; font-size: 2.5rem; font-weight: 700; }

@@ -1,0 +1,43 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark mobile-shadow">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"><img src="file/logopic.png" alt="logo" class="logo-img"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#About">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#services">Services</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#Skills">Skills</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#Resume">Resume</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#Portfolio">Projects</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#Contact">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<app-home></app-home>
+<app-about></app-about>
+<app-services></app-services>
+<app-skills></app-skills>
+<app-resume></app-resume>
+<app-portfolio></app-portfolio>
+<app-contact [currentYear]="currentYear" [web3formsAccessKey]="web3formsAccessKey" [formspreeEndpoint]="formspreeEndpoint" [contactProvider]="contactProvider"></app-contact>

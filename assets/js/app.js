@@ -1,6 +1,7 @@
-particlesJS('particles-js',
-  
-  {
+// Expose particles configuration and defer initialization to Angular
+// The Angular app will call `window.particlesJS('particles-js', window.__particlesConfig)`
+// after the view is ready. This avoids running particles before the DOM element exists.
+window.__particlesConfig = {
     "particles": {
       "number": {
         "value": 80,
@@ -8,9 +9,6 @@ particlesJS('particles-js',
           "enable": true,
           "value_area": 800
         }
-      },
-      "color": {
-        "value": "#ffffff"
       },
       "shape": {
         "type": "circle",
@@ -115,6 +113,4 @@ particlesJS('particles-js',
       "background_repeat": "no-repeat",
       "background_size": "cover"
     }
-  }
-
-);
+  };

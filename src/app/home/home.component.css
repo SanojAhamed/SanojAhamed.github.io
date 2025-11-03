@@ -1,0 +1,50 @@
+/* Styles specific to the Home section */
+#particles-js { position: relative; z-index: 1; }
+
+@media (min-width: 992px) {
+  .hero_title { font-size: 2rem !important; font-weight: 500; }
+  .auto-input-name { font-size: 62px !important; line-height: 1.1; }
+  .auto-input { font-size: 62px !important; height: auto; padding: 0; }
+  .hero-des { font-size: 1.125rem !important; }
+  .main-btn { font-size: 1rem; padding: 12px 28px; }
+}
+
+@media (min-width: 992px) {
+  .hero_title { margin-bottom: 12px !important; }
+  .auto-input-name { margin: 8px 0 18px !important; }
+  .hero-des { margin-top: -20px !important; line-height: 1.65; }
+}
+
+.hero-socials { margin-top: -5px; margin-bottom: 15px; display: flex; justify-content: center; align-items: center; gap: 16px; }
+.hero-socials a { color: #fff !important; font-size: 28px; display: inline-block; line-height: 1; border: none; border-radius: 0; background: transparent; width: auto; height: auto; transition: transform 150ms ease, color 150ms ease; }
+.hero-socials a:hover { transform: translateY(-2px); color: #ffffff; }
+
+
+@media (max-width: 768px) {
+  .home-detail .hero_title {
+    font-size: 18px;
+    line-height: 1.15;
+    margin-bottom: 6px;
+  }
+
+  .home-detail .auto-input-name {
+    font-size: 22px;
+    line-height: 1.08;
+    margin: 0 0 8px;
+    white-space: normal;      
+    word-break: break-word;
+  }
+
+  .home-detail .auto-input-name .auto-input {
+    display: block;
+    font-size: 22px;
+    line-height: 1.05;
+  }
+
+  .home-detail .hero-des {
+    font-size: 14px;
+    margin-top: 10px;       
+  }
+
+  .home-detail { padding-bottom: 8px; }
+}

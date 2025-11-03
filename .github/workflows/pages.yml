@@ -18,36 +18,29 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
-      - run: npm ci
 
-      # Build (let angular.json decide outputPath)
+      - name: Install dependencies
+        run: npm ci
+
       - name: Build Angular
-        run: npx ng build --configuration production --base-href "/"
-
-      # Find the folder that contains index.html under dist
-      - name: Locate output folder
-        id: out
-        run: |
-          OUT_DIR="$(dirname "$(find dist -type f -name index.html | head -n1)")"
-          echo "OUT_DIR=$OUT_DIR" | tee -a $GITHUB_ENV
-          [ -f "$OUT_DIR/index.html" ] || (echo "index.html not found" && exit 1)
-
-      - name: Verify output
-        run: ls -la "$OUT_DIR" && echo "------" && find "$OUT_DIR" -maxdepth 2 -type d -print
+        run: npx ng build --configuration production --base-href "/" --output-path dist
 
       - name: Include CNAME (custom domain)
         if: hashFiles('CNAME') != ''
-        run: cp CNAME "$OUT_DIR"/CNAME
+        run: cp CNAME dist/CNAME
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ${{ env.OUT_DIR }}
+          path: dist
 
   deploy:
     needs: build

@@ -1,4 +1,18 @@
-node_modules
+# Node / Angular
+node_modules/
+dist/
+.angular/cache/
 
-/dist
-/.angular/cache
+# Editor/OS
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Local history/backups
+.history/

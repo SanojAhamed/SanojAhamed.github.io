@@ -33,10 +33,6 @@ jobs:
       - name: Build Angular
         run: npx ng build --configuration production --base-href "/" --output-path dist
 
-      - name: Include CNAME (custom domain)
-        if: hashFiles('CNAME') != ''
-        run: cp CNAME dist/CNAME
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

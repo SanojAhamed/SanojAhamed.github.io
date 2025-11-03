@@ -11,27 +11,36 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/sanoj-angular",
-            "index": "src/index.html",
+            "index": "src/app/app.component.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              "src/favicon.ico",
+              {
+                "glob": "**/*",
+                "input": "assets",
+                "output": "/assets"
+              },
+              {
+                "glob": "**/*",
+                "input": "file",
+                "output": "/file"
+              },
+              "src/favicon.ico"
               { "glob": "**/*", "input": "src/assets", "output": "/assets" },
-              { "glob": "**/*", "input": "src/file",   "output": "/file" }
             ],
             "styles": [
-              "src/assets/css/bootstrap.min.css",
-              "src/assets/css/style.css",
-              "src/assets/css/my.css",
-              "src/assets/css/contact.css",
-              "src/assets/css/load.css"
+              "assets/css/bootstrap.min.css",
+              "assets/css/style.css",
+              "assets/css/my.css",
+              "assets/css/contact.css",
+              "assets/css/load.css"
             ],
             "scripts": [
-              "src/assets/js/bootstrap.bundle.min.js",
-              "src/assets/js/particles.js",
-              "src/assets/js/app.js",
-              "src/assets/js/script.js"
+              "assets/js/bootstrap.bundle.min.js",
+              "assets/js/particles.js",
+              "assets/js/app.js",
+              "assets/js/script.js"
             ]
           },
           "configurations": {
@@ -55,5 +64,7 @@
       }
     }
   },
-  "cli": { "analytics": false }
+  "cli": {
+    "analytics": false
+  }
 }

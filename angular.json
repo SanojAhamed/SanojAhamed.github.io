@@ -1,7 +1,6 @@
 {
   "$schema": "https://angular.io/cli/schema/angular-json",
   "version": 1,
-  "defaultProject": "sanoj-angular",
   "projects": {
     "sanoj-angular": {
       "projectType": "application",
@@ -48,8 +47,7 @@
               "fileReplacements": [],
               "optimization": true,
               "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true
+              "sourceMap": false
             }
           }
         },
@@ -61,5 +59,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

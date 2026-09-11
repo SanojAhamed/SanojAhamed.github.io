@@ -1,7 +1,7 @@
 .sub-title-skills {
   text-align: center;
-  margin-top: 60px;
-  margin-bottom: 100px;
+  margin-top: 24px;
+  margin-bottom: 24px;
   padding-bottom: -60px;
   font-size: 25px;
   font-weight: 400;
@@ -20,11 +20,11 @@ ul {
 }
 
 .skills {
-  padding-block: var(--section-padding);
+  padding-block: 24px;
 }
 
 .skills-content {
-  margin-bottom: 50px;
+  margin-bottom: 24px;
 }
 
 .image-grid .col-md-3 {
@@ -135,9 +135,9 @@ ul {
 @media (min-width: 550px) {
   .sub-title-skills {
     text-align: center;
-    margin-top: 40px;
-    margin-bottom: 15px;
-    padding-bottom: px;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    padding-bottom: 0;
     font-size: 25px;
     font-weight: 400;
     color: black;
@@ -157,8 +157,8 @@ ul {
 
   .sub-title-skills {
     text-align: center;
-    margin-top: 60px;
-    margin-bottom: -100px;
+    margin-top: 24px;
+    margin-bottom: 24px;
     padding-bottom: 9px;
     font-size: 25px;
     font-weight: 400;
@@ -192,10 +192,10 @@ ul {
 @media screen and (max-width : 768px) {
   .sub-title-skills {
     text-align: center;
-    margin-top: 60px;
-    margin-bottom: 30px;
+    margin-top: 24px;
+    margin-bottom: 24px;
     padding-bottom: 9px;
-    font-size: 25px;
+    font-size: 22px;
     font-weight: 400;
     color: black;
   }

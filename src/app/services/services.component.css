@@ -19,3 +19,16 @@
     padding: 14px 18px;
   }
 }
+
+#services {
+  padding-top: 48px;
+  padding-bottom: 64px;
+}
+
+#services .services-intro {
+  margin-bottom: 28px;
+}
+
+#services .services-subtitle {
+  margin-bottom: 16px;
+}

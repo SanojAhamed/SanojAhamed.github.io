@@ -44,6 +44,26 @@
 .hero-socials { margin-top: -5px; margin-bottom: 15px; display: flex; justify-content: center; align-items: center; gap: 16px; }
 .hero-socials a { color: #fff !important; font-size: 30px; display: inline-block; line-height: 1; border: none; border-radius: 0; background: transparent; width: auto; height: auto; transition: transform 150ms ease, color 150ms ease; }
 .hero-socials a:hover { transform: translateY(-2px); color: #ffffff; }
+.hero-availability {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 14px;
+  padding: 7px 12px;
+  border: 1px solid rgba(217, 251, 217, 0.28);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.22);
+  color: #effff0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.hero-availability span { width: 8px; height: 8px; border-radius: 50%; background: #65d66f; box-shadow: 0 0 0 4px rgba(101, 214, 111, 0.16); animation: availability-pulse 1.8s ease-in-out infinite; }
+
+@keyframes availability-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(0.75); }
+}
 .auto-input {
   display: inline-block;
   min-width: 1ch;
@@ -77,34 +97,39 @@
 
 @media (max-width: 768px) {
   .home-detail .hero_title {
-    font-size: 20px;
+    font-size: 18px;
     line-height: 1.15;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
   }
 
   .home-detail .auto-input-name {
-    min-height: 30px;
+    min-height: 24px;
     height: auto;
-    font-size: 25px;
-    line-height: 1.08;
-    margin: 0 0 8px;
-    white-space: normal;      
-    word-break: break-word;
+    font-size: 20px;
+    line-height: 1.05;
+    margin: 0 0 4px;
+    white-space: nowrap;
   }
 
   .home-detail .auto-input-name .auto-input {
-    display: block;
-    font-size: 25px;
+    display: inline;
+    font-size: 20px;
     line-height: 1.05;
   }
 
   .home-detail .hero-des {
-    font-size: 14px;
-    margin-top: 4px;
-    padding: 4px 0 10px;
+    display: none;
   }
 
-  .home-detail { padding-bottom: 8px; }
+  .hero-availability { margin-bottom: 6px; font-size: 0.72rem; }
+  .hero-socials { gap: 10px; margin: 0 0 8px; }
+  .hero-socials a { font-size: 24px; width: 34px; height: 34px; }
+  .home-detail .main-btn { min-height: 42px; padding: 10px 22px; font-size: 0.9rem; }
+  .home-detail {
+    width: 100%;
+    height: auto;
+    padding: 0 20px 4px;
+  }
 }
 
 @media (max-width: 991.98px) {

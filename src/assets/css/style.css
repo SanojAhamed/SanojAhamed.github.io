@@ -1120,7 +1120,7 @@ h2 {
   }
 
   /* Make sure the inner particle wrapper doesn't introduce guttering */
-  #particles-js {
+  .home-hero-content {
     width: 100% !important;
     margin: 0 !important;
     padding: 0 !important;

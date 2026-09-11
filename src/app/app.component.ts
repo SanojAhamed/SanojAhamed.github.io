@@ -209,11 +209,11 @@ export class AppComponent implements AfterViewInit {
     setActiveNav('home');
 
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
     const initializeParticles = () => {
       const particles = (window as any).particlesJS;
       if (!particles || reducedMotion) return;
-      const isMobile = window.matchMedia('(max-width: 768px)').matches;
       particles('particles-js', {
         particles: {
           number: { value: isMobile ? 28 : 55, density: { enable: true, value_area: 800 } },
@@ -246,7 +246,7 @@ export class AppComponent implements AfterViewInit {
       document.head.appendChild(script);
     };
     const idle = (window as Window & { requestIdleCallback?: (callback: () => void) => number }).requestIdleCallback;
-    if (!reducedMotion) {
+    if (!reducedMotion && !isMobile) {
       if (idle) idle(loadParticles);
       else window.setTimeout(loadParticles, 1200);
     }

@@ -29,7 +29,7 @@
         </div>
         <div class="wrap-input1 validate-input" [class.has-error]="fieldErrors.message">
           <label for="contact-message">Message</label>
-          <textarea id="contact-message" class="input1" name="message" placeholder="Tell me about your project" required
+          <textarea id="contact-message" class="input1" name="message" placeholder="Tell me about your idea" required
             [attr.aria-invalid]="fieldErrors.message ? 'true' : 'false'" aria-describedby="message-error"></textarea>
           <span id="message-error" class="field-error" *ngIf="fieldErrors.message">{{ fieldErrors.message }}</span>
           <span class="shadow-input1"></span>

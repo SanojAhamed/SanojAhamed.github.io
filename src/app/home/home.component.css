@@ -1,5 +1,5 @@
 /* Styles specific to the Home section */
-#particles-js { position: relative; z-index: 1; }
+.home-hero-content { position: relative; z-index: 1; }
 
 .bgimage {
   min-height: 100svh;
@@ -8,13 +8,13 @@
   padding-bottom: 40px;
 }
 
-#particles-js {
+.home-hero-content {
   min-height: calc(100svh - 136px);
   display: flex;
   align-items: center;
 }
 
-#particles-js > .row {
+.home-hero-content > .row {
   width: 100%;
   margin: 0;
 }

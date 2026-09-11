@@ -98,7 +98,7 @@ img, svg {
 }
 
 .auto-input {
-  /* make the inline typed text small and inline on mobile */
+  /* keep the animated role text inline on mobile */
   display: inline-block !important;
   width: auto !important;
   height: auto !important;

@@ -1,1 +1,31 @@
-/* No specific CSS needed here, assuming component uses existing global styles or Bootstrap */
+.card-img-top {
+	aspect-ratio: 16 / 9;
+	object-fit: cover;
+}
+
+.project-link {
+	display: inline-block;
+	margin-bottom: 10px;
+}
+
+.project-tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	margin-bottom: 12px;
+}
+
+.project-tags span {
+	padding: 4px 8px;
+	border-radius: 999px;
+	background: #f1f2f4;
+	color: #444;
+	font-size: 0.75rem;
+	font-weight: 600;
+}
+
+.project-more {
+	border: 0;
+	border-radius: 8px;
+	background: #ff2929;
+}

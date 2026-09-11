@@ -37,6 +37,7 @@ export class AppComponent implements AfterViewInit {
     // Navbar: add dark bg + shadow after scrolling, and when mobile toggler opens
     const nav = document.querySelector('nav') as HTMLElement | null;
     const navbarToggle = document.querySelector('.navbar-toggler') as HTMLElement | null;
+    const navbarCollapse = document.querySelector('.navbar-collapse') as HTMLElement | null;
 
     const addBgDarkToNavbar = () => {
       nav?.classList.add('bg-dark');
@@ -60,18 +61,16 @@ export class AppComponent implements AfterViewInit {
     handleNavbarScroll();
     window.addEventListener('scroll', handleNavbarScroll);
 
-    if (navbarToggle) {
+    if (navbarToggle && navbarCollapse) {
       navbarToggle.addEventListener('click', () => {
-        if (!nav?.classList.contains('bg-dark')) {
-          addBgDarkToNavbar();
-        } else {
-          removeBgDarkFromNavbar();
-        }
+        const isOpen = navbarCollapse.classList.toggle('show');
+        navbarToggle.setAttribute('aria-expanded', String(isOpen));
+        if (isOpen) addBgDarkToNavbar();
+        else handleNavbarScroll();
       });
     }
 
     // close mobile navbar when clicking/touching outside the nav area
-    const navbarCollapse = document.querySelector('.navbar-collapse') as HTMLElement | null;
     const outsideClickHandler = (ev: MouseEvent | TouchEvent) => {
       const target = ev.target as Node | null;
       const collapse = navbarCollapse;
@@ -79,10 +78,9 @@ export class AppComponent implements AfterViewInit {
       // clicked inside nav or on the toggler -> ignore
       if (nav && target && nav.contains(target)) return;
       if (navbarToggle && target && navbarToggle.contains(target)) return;
-      // close via toggler if present so Bootstrap handlers run
-      if (navbarToggle) {
-        (navbarToggle as HTMLElement).click();
-      }
+      navbarCollapse.classList.remove('show');
+      navbarToggle?.setAttribute('aria-expanded', 'false');
+      handleNavbarScroll();
     };
 
     document.addEventListener('click', outsideClickHandler);
@@ -212,9 +210,9 @@ export class AppComponent implements AfterViewInit {
 
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // Particles.js background (if library present)
-    const particles = (window as any).particlesJS;
-    if (particles && !reducedMotion) {
+    const initializeParticles = () => {
+      const particles = (window as any).particlesJS;
+      if (!particles || reducedMotion) return;
       const isMobile = window.matchMedia('(max-width: 768px)').matches;
       particles('particles-js', {
         particles: {
@@ -239,6 +237,18 @@ export class AppComponent implements AfterViewInit {
         },
         retina_detect: true
       });
+    };
+
+    const loadParticles = () => {
+      const script = document.createElement('script');
+      script.src = 'assets/js/particles.js';
+      script.onload = initializeParticles;
+      document.head.appendChild(script);
+    };
+    const idle = (window as Window & { requestIdleCallback?: (callback: () => void) => number }).requestIdleCallback;
+    if (!reducedMotion) {
+      if (idle) idle(loadParticles);
+      else window.setTimeout(loadParticles, 1200);
     }
    
   }

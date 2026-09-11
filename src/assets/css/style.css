@@ -479,7 +479,7 @@ img, svg {
 }
 
 .about-des {
-  font-size: 15px;
+  font-size: 14px;
   text-align: justify;
   padding: 0 0 20px 0;
   font-weight: 650;
@@ -584,10 +584,16 @@ img, svg {
 
 /* Services */
 #services {
-  padding: 10px 20px 0;
+  padding: 88px 24px 96px;
   color: #000;
-  margin-bottom: -25px;
+  background: #fff;
 }
+
+.services-container { width: min(1180px, 100%); margin: 0 auto; }
+#services .section_title { margin: 0 0 12px; padding: 0; line-height: 1.2; }
+.services-intro { max-width: 620px; margin: 0 auto 42px; color: #5a5a5a; text-align: center; line-height: 1.6; }
+.services-subtitle { margin: 0 0 20px; color: #2c2828; font-size: 1.25rem; }
+.services-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; }
 
 .title {
   margin-top: 25px;
@@ -597,8 +603,7 @@ img, svg {
 
 #services .service-card p {
   color: rgb(29, 27, 27);
-  ;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .sub-title {
@@ -619,18 +624,14 @@ img, svg {
 }
 
 .service-card {
-  /* make four cards per row on desktop */
-  flex: 0 0 calc(25% - 20px);
-  max-width: calc(25% - 20px);
   box-sizing: border-box;
-  padding: 30px 20px;
+  min-height: 350px;
+  padding: 28px 24px 24px;
   margin: 0;
-  font-size: 15px;
-  font-weight: 600;
-  border-radius: 12px;
-  transition: background 0.25s ease, transform 0.25s ease;
-  cursor: pointer;
-  background: #fff; /* ensure consistent card background */
+  border: 1px solid #ececef;
+  border-radius: 14px;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  background: #fafafa;
   text-align: left;
   display: flex;
   flex-direction: column;
@@ -638,11 +639,76 @@ img, svg {
 }
 
 .service-card:hover {
-  background: #ffefef; /* subtle hover */
+  background: #fff;
+  border-color: #ff2929;
+  box-shadow: 0 16px 32px rgba(255, 41, 41, 0.12);
   transform: translateY(-6px);
 }
 
-/* icon / image inside card */
+.service-icon {
+  margin-bottom: 20px;
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: #fff0f0;
+  color: #ff2929;
+  font-size: 1.35rem;
+}
+
+.service-card-featured {
+  border-color: #ff2929;
+  box-shadow: 0 12px 28px rgba(255, 41, 41, 0.1);
+}
+
+.service-label {
+  margin-bottom: 8px;
+  color: #ff2929;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.service-card h3 {
+  margin: 0 0 12px;
+  color: #1d1b1b;
+  font-size: 1.2rem;
+  line-height: 1.25;
+}
+
+.service-card p {
+  margin: 0;
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.services-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 38px;
+  color: #555;
+}
+
+.services-cta a {
+  color: #ff2929;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.services-cta a:hover { color: #be4036; }
+
+/* Legacy service-list support for older markup. */
+.service-list .service-card {
+  flex: 0 0 calc(25% - 20px);
+  max-width: calc(25% - 20px);
+}
+
+/* icon / image inside older card markup */
 .service-card .card-icon {
   margin-bottom: 18px;
   width: 56px;
@@ -659,34 +725,18 @@ img, svg {
   display: block;
 }
 
-.service-card h2 {
-  font-size: 20px;
-  font-weight: 700;
-  margin: 0 0 8px 0;
-  color: #1d1b1b;
-}
-
-.service-card p {
-  padding: 0;
-  margin-top: 8px;
-  font-size: 15px;
-  font-weight: 600;
-  color: #2c2a2a;
-}
-
 /* Responsive: two columns on medium screens, one on small */
 @media (max-width: 991px) {
-  .service-card {
-    flex: 0 0 calc(50% - 20px);
-    max-width: calc(50% - 20px);
-  }
+  .services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .service-list .service-card { flex: 0 0 calc(50% - 20px); max-width: calc(50% - 20px); }
 }
 
 @media (max-width: 650px) {
-  .service-card {
-    flex: 0 0 100%;
-    max-width: 100%;
-  }
+  #services { padding: 64px 16px 72px; }
+  .services-intro { margin-top: -18px; margin-bottom: 32px; }
+  .services-grid { grid-template-columns: 1fr; }
+  .service-list .service-card { flex: 0 0 100%; max-width: 100%; }
+  .services-cta { flex-direction: column; }
 }
 
 /* Resume Section */

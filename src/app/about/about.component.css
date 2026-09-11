@@ -1,3 +1,45 @@
+/* About metadata and actions */
+.about-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  margin-top: 10px;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.about-meta i { color: #ff2929; margin-right: 5px; }
+.about .content .about-des {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.about .content .about-des + .about-des { margin-top: 6px; }
+
+.about-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.about-cv-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 16px;
+  border-radius: 8px;
+  background: #ff2929;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 180ms ease, transform 180ms ease;
+}
+
+.about-cv-button:hover { background: #be4036; color: #fff; transform: translateY(-2px); }
+
 /* Stats card FA icons */
 .stats-card .card-icon {
   width: 40px;

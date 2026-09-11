@@ -17,6 +17,7 @@ export class ContactComponent {
   // UI state
   isSending = false;
   submitSuccess: boolean | null = null;
+  fieldErrors: Record<string, string> = {};
 
   // Contact form submit: posts to Web3Forms or Formspree
   // Works on static hosting (e.g., GitHub Pages)
@@ -31,7 +32,14 @@ export class ContactComponent {
     const email = (fd.get('email') || '').toString().trim();
     const subject = (fd.get('subject') || '').toString().trim();
     const message = (fd.get('message') || '').toString().trim();
-    if (!name || !email || !subject || !message) {
+    this.fieldErrors = {
+      ...(!name ? { name: 'Please enter your name.' } : {}),
+      ...(!email ? { email: 'Please enter your email address.' } : {}),
+      ...(email && !/^\S+@\S+\.\S+$/.test(email) ? { email: 'Please enter a valid email address.' } : {}),
+      ...(!subject ? { subject: 'Please enter a subject.' } : {}),
+      ...(!message ? { message: 'Please enter a message.' } : {})
+    };
+    if (Object.keys(this.fieldErrors).length > 0) {
       this.submitSuccess = false;
       return;
     }
@@ -60,7 +68,10 @@ export class ContactComponent {
       }
 
       this.submitSuccess = ok;
-      if (ok) form.reset();
+      if (ok) {
+        form.reset();
+        this.fieldErrors = {};
+      }
     } catch (err) {
       console.error('Contact form submission error:', err);
       this.submitSuccess = false;

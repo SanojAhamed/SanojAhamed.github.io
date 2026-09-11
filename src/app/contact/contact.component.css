@@ -14,3 +14,20 @@
   object-fit: contain;
   mix-blend-mode: multiply;
 }
+
+.wrap-input1 label {
+  display: block;
+  margin: 0 0 6px 8px;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.field-error {
+  display: block;
+  margin: 5px 8px 0;
+  color: #ffb3b3;
+  font-size: 0.8rem;
+}
+
+.has-error .input1 { border: 2px solid #ff8c8c; }

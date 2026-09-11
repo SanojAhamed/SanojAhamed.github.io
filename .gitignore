@@ -1,7 +1,8 @@
 # Node / Angular
 node_modules/
 dist/
-.angular/cache/
+.angular/
+coverage/
 
 # Editor/OS
 .vscode/
@@ -16,3 +17,8 @@ pnpm-debug.log*
 
 # Local history/backups
 .history/
+
+# Environment/config secrets
+.env
+.env.*
+!.env.example

@@ -35,24 +35,24 @@ export class AppComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     // Navbar: add dark bg + shadow after scrolling, and when mobile toggler opens
-    const nav = document.querySelector('nav');
+    const nav = document.querySelector('nav') as HTMLElement | null;
     const navbarToggle = document.querySelector('.navbar-toggler') as HTMLElement | null;
 
     const addBgDarkToNavbar = () => {
-      (nav as HTMLElement | null)?.classList.add('bg-dark');
+      nav?.classList.add('bg-dark');
     };
 
     const removeBgDarkFromNavbar = () => {
-      (nav as HTMLElement | null)?.classList.remove('bg-dark');
+      nav?.classList.remove('bg-dark');
     };
 
     const handleNavbarScroll = () => {
       const y = window.pageYOffset || document.documentElement.scrollTop;
       if (y > 100) {
-        (nav as HTMLElement | null)?.classList.add('shadow');
+        nav?.classList.add('shadow');
         addBgDarkToNavbar();
       } else {
-        (nav as HTMLElement | null)?.classList.remove('shadow');
+        nav?.classList.remove('shadow');
         removeBgDarkFromNavbar();
       }
     };
@@ -62,7 +62,7 @@ export class AppComponent implements AfterViewInit {
 
     if (navbarToggle) {
       navbarToggle.addEventListener('click', () => {
-        if (!(nav as HTMLElement).classList.contains('bg-dark')) {
+        if (!nav?.classList.contains('bg-dark')) {
           addBgDarkToNavbar();
         } else {
           removeBgDarkFromNavbar();
@@ -74,17 +74,14 @@ export class AppComponent implements AfterViewInit {
     const navbarCollapse = document.querySelector('.navbar-collapse') as HTMLElement | null;
     const outsideClickHandler = (ev: MouseEvent | TouchEvent) => {
       const target = ev.target as Node | null;
-      if (!navbarCollapse || !navbarCollapse.classList.contains('show')) return;
+      const collapse = navbarCollapse;
+      if (!collapse || !collapse.matches('.show')) return;
       // clicked inside nav or on the toggler -> ignore
       if (nav && target && nav.contains(target)) return;
       if (navbarToggle && target && navbarToggle.contains(target)) return;
       // close via toggler if present so Bootstrap handlers run
       if (navbarToggle) {
         (navbarToggle as HTMLElement).click();
-      } else {
-        navbarCollapse.classList.remove('show');
-        if (navbarToggle) navbarToggle.classList.add('collapsed');
-        removeBgDarkFromNavbar();
       }
     };
 
@@ -191,31 +188,43 @@ export class AppComponent implements AfterViewInit {
       });
     });
 
-    // Typed.js text animation 
-    const typedLib = (window as any).Typed;
-    if (typedLib) {
-      new typedLib('.auto-input', {
-        strings: ['a Full Stack Developer', 'a Tech Enthusiast', 'a UI/UX Designer', 'an Innovator'],
-        typeSpeed: 20,
-        backSpeed: 20,
-        backDelay: 1500,
-        loop: true,
-        smartBackspace: true,
+    // Keep the current section visible in the navbar while the user scrolls.
+    const navLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('nav a.nav-link[href^="#"]'));
+    const sections = navLinks
+      .map((link) => document.getElementById(link.getAttribute('href')?.slice(1) || ''))
+      .filter((section): section is HTMLElement => section !== null);
+    const setActiveNav = (sectionId: string) => {
+      navLinks.forEach((link) => {
+        const isActive = link.getAttribute('href') === `#${sectionId}`;
+        link.classList.toggle('active', isActive);
+        if (isActive) link.setAttribute('aria-current', 'page');
+        else link.removeAttribute('aria-current');
       });
-    }
+    };
+    const sectionObserver = new IntersectionObserver((entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (visible) setActiveNav((visible.target as HTMLElement).id);
+    }, { rootMargin: `-${nav?.getBoundingClientRect().height || 72}px 0px -55%`, threshold: [0.1, 0.5, 0.8] });
+    sections.forEach((section) => sectionObserver.observe(section));
+    setActiveNav('home');
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     // Particles.js background (if library present)
     const particles = (window as any).particlesJS;
-    if (particles) {
+    if (particles && !reducedMotion) {
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
       particles('particles-js', {
         particles: {
-          number: { value: 80, density: { enable: true, value_area: 800 } },
+          number: { value: isMobile ? 28 : 55, density: { enable: true, value_area: 800 } },
           color: { value: '#ffffff' },
           shape: { type: 'circle', stroke: { width: 0, color: '#000000' }, polygon: { nb_sides: 5 } },
           opacity: { value: 0.5, random: false, anim: { enable: false, speed: 1, opacity_min: 0.1, sync: false } },
           size: { value: 5, random: true, anim: { enable: false, speed: 40, size_min: 0.1, sync: false } },
           line_linked: { enable: true, distance: 150, color: '#ffffff', opacity: 0.4, width: 1 },
-          move: { enable: true, speed: 6, direction: 'none', random: false, straight: false, out_mode: 'out', attract: { enable: false, rotateX: 600, rotateY: 1200 } }
+          move: { enable: true, speed: isMobile ? 2 : 3, direction: 'none', random: false, straight: false, out_mode: 'out', attract: { enable: false, rotateX: 600, rotateY: 1200 } }
         },
         interactivity: {
           detect_on: 'canvas',

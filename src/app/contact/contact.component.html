@@ -3,23 +3,35 @@
     <div class="col-md-12 text-align text-center fs-2 text-white">Contact me</div>
     <div class="contact-des col-md-12 text-align text-center fs-8 text-white">Let's Make a clear conversation!</div>
     <div class="container-contact1">
-      <div class="contact1-pic" data-tilt><img src="assets/images/message.png" alt="Contact"></div>
+      <div class="contact1-pic"><img src="assets/images/message.png" alt="Contact"></div>
 
       <form class="contact1-form validate-form" (submit)="onSubmitContact($event)" novalidate>
-        <div class="wrap-input1 validate-input" data-validate="Name is required">
-          <input class="input1" type="text" name="name" placeholder="Name" required>
+        <div class="wrap-input1 validate-input" [class.has-error]="fieldErrors.name">
+          <label for="contact-name">Name</label>
+          <input id="contact-name" class="input1" type="text" name="name" placeholder="Your name" autocomplete="name" required
+            [attr.aria-invalid]="fieldErrors.name ? 'true' : 'false'" aria-describedby="name-error">
+          <span id="name-error" class="field-error" *ngIf="fieldErrors.name">{{ fieldErrors.name }}</span>
           <span class="shadow-input1"></span>
         </div>
-        <div class="wrap-input1 validate-input" data-validate="Valid email is required: example@gmail.com">
-          <input class="input1" type="email" name="email" placeholder="Email" required>
+        <div class="wrap-input1 validate-input" [class.has-error]="fieldErrors.email">
+          <label for="contact-email">Email</label>
+          <input id="contact-email" class="input1" type="email" name="email" placeholder="you@example.com" autocomplete="email" required
+            [attr.aria-invalid]="fieldErrors.email ? 'true' : 'false'" aria-describedby="email-error">
+          <span id="email-error" class="field-error" *ngIf="fieldErrors.email">{{ fieldErrors.email }}</span>
           <span class="shadow-input1"></span>
         </div>
-        <div class="wrap-input1 validate-input" data-validate="Subject is required">
-          <input class="input1" type="text" name="subject" placeholder="Subject" required>
+        <div class="wrap-input1 validate-input" [class.has-error]="fieldErrors.subject">
+          <label for="contact-subject">Subject</label>
+          <input id="contact-subject" class="input1" type="text" name="subject" placeholder="How can I help?" required
+            [attr.aria-invalid]="fieldErrors.subject ? 'true' : 'false'" aria-describedby="subject-error">
+          <span id="subject-error" class="field-error" *ngIf="fieldErrors.subject">{{ fieldErrors.subject }}</span>
           <span class="shadow-input1"></span>
         </div>
-        <div class="wrap-input1 validate-input" data-validate="Message is required">
-          <textarea class="input1" name="message" placeholder="Message" required></textarea>
+        <div class="wrap-input1 validate-input" [class.has-error]="fieldErrors.message">
+          <label for="contact-message">Message</label>
+          <textarea id="contact-message" class="input1" name="message" placeholder="Tell me about your project" required
+            [attr.aria-invalid]="fieldErrors.message ? 'true' : 'false'" aria-describedby="message-error"></textarea>
+          <span id="message-error" class="field-error" *ngIf="fieldErrors.message">{{ fieldErrors.message }}</span>
           <span class="shadow-input1"></span>
         </div>
         <div class="container-contact1-form-btn">
@@ -34,7 +46,7 @@
       </form>
     </div>
     <div class="col-md-12 text-align text-center pt-5">
-      <img src="file/logopic.png" width="200px" alt="" class="img-fluid mx-auto">
+      <img src="file/logopic.png" width="200px" alt="Sanoj Ahamed logo" class="img-fluid mx-auto">
       <p class="footer text-white ">All rights reserved © {{ currentYear }} | Made with ❤️ Sanoj Ahamed</p>
     </div>
   </div>

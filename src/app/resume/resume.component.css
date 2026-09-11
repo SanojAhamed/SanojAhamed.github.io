@@ -2,6 +2,53 @@
 	padding-top: 30px;
 }
 
+.experience-company {
+	color: #2c2828;
+	font-size: 1.1rem;
+	margin: 0 0 14px;
+}
+
+.experience-timeline {
+	position: relative;
+	padding-left: 28px;
+}
+
+.experience-timeline::before {
+	position: absolute;
+	content: '';
+	top: 8px;
+	bottom: 8px;
+	left: 4px;
+	width: 2px;
+	background: #dfe3e8;
+}
+
+.experience-item {
+	position: relative;
+	padding-bottom: 20px;
+}
+
+.experience-item:last-child {
+	padding-bottom: 0;
+}
+
+.resume-col-2 .experience-item p {
+	font-size: 14px;
+}
+
+.experience-item::before {
+	position: absolute;
+	content: '';
+	top: 8px;
+	left: -28px;
+	width: 10px;
+	height: 10px;
+	border: 2px solid #fff;
+	border-radius: 50%;
+	background: #ff2929;
+	box-shadow: 0 0 0 1px #ff2929;
+}
+
 .resume_tabs ul {
 	padding: 0;
 	margin: 0;

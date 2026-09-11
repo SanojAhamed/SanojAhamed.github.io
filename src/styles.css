@@ -6,3 +6,13 @@ html, body {
 app-root {
   display: block;
 }
+
+section:not(#home) {
+  padding-block: clamp(56px, 8vw, 96px);
+}
+
+section:not(#home) > .container,
+section:not(#home) > .container-fluid {
+  width: min(1180px, calc(100% - 32px));
+  margin-inline: auto;
+}

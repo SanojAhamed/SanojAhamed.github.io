@@ -1,34 +1,91 @@
 /* Styles specific to the Home section */
 #particles-js { position: relative; z-index: 1; }
 
+.bgimage {
+  min-height: 100svh;
+  display: block;
+  padding-top: 96px;
+  padding-bottom: 40px;
+}
+
+#particles-js {
+  min-height: calc(100svh - 136px);
+  display: flex;
+  align-items: center;
+}
+
+#particles-js > .row {
+  width: 100%;
+  margin: 0;
+}
+
+.bgimage .hero-text {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+  width: 100%;
+}
+
 @media (min-width: 992px) {
-  .hero_title { font-size: 2rem !important; font-weight: 500; }
-  .auto-input-name { font-size: 62px !important; line-height: 1.1; }
-  .auto-input { font-size: 62px !important; height: auto; padding: 0; }
-  .hero-des { font-size: 1.125rem !important; }
-  .main-btn { font-size: 1rem; padding: 12px 28px; }
+  .hero_title { font-size: 2.2rem !important; font-weight: 500; }
+  .auto-input-name { font-size: 68px !important; line-height: 1.1; }
+  .auto-input { font-size: 68px !important; height: auto; padding: 0; }
+  .hero-des { font-size: 1.1rem !important; }
+  .main-btn { font-size: 1.05rem; padding: 14px 30px; }
 }
 
 @media (min-width: 992px) {
   .hero_title { margin-bottom: 12px !important; }
-  .auto-input-name { margin: 8px 0 18px !important; }
-  .hero-des { margin-top: -20px !important; line-height: 1.65; }
+  .auto-input-name { min-height: 74px; height: auto; margin: 8px 0 4px !important; white-space: nowrap; }
+  .hero-des { margin-top: 0 !important; padding: 4px 0 12px !important; line-height: 1.5; }
 }
 
 .hero-socials { margin-top: -5px; margin-bottom: 15px; display: flex; justify-content: center; align-items: center; gap: 16px; }
-.hero-socials a { color: #fff !important; font-size: 28px; display: inline-block; line-height: 1; border: none; border-radius: 0; background: transparent; width: auto; height: auto; transition: transform 150ms ease, color 150ms ease; }
+.hero-socials a { color: #fff !important; font-size: 30px; display: inline-block; line-height: 1; border: none; border-radius: 0; background: transparent; width: auto; height: auto; transition: transform 150ms ease, color 150ms ease; }
 .hero-socials a:hover { transform: translateY(-2px); color: #ffffff; }
+.auto-input {
+  display: inline-block;
+  min-width: 1ch;
+  text-shadow: 0 0 18px rgba(255, 255, 255, 0.18);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.auto-input::after { content: '|'; display: inline-block; margin-left: 5px; font-weight: 400; animation: hero-cursor-blink 700ms steps(1, end) infinite; }
+
+.auto-input.is-typing { opacity: 1; transform: translateY(0); }
+.auto-input.is-holding { opacity: 1; transform: translateY(0); }
+.auto-input.is-deleting { opacity: 0.92; transform: translateY(1px); }
+
+@keyframes hero-cursor-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.home-detail .main-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1;
+  width: fit-content !important;
+  min-height: 48px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
 
 
 @media (max-width: 768px) {
   .home-detail .hero_title {
-    font-size: 18px;
+    font-size: 20px;
     line-height: 1.15;
     margin-bottom: 6px;
   }
 
   .home-detail .auto-input-name {
-    font-size: 22px;
+    min-height: 30px;
+    height: auto;
+    font-size: 25px;
     line-height: 1.08;
     margin: 0 0 8px;
     white-space: normal;      
@@ -37,14 +94,25 @@
 
   .home-detail .auto-input-name .auto-input {
     display: block;
-    font-size: 22px;
+    font-size: 25px;
     line-height: 1.05;
   }
 
   .home-detail .hero-des {
     font-size: 14px;
-    margin-top: 10px;       
+    margin-top: 4px;
+    padding: 4px 0 10px;
   }
 
   .home-detail { padding-bottom: 8px; }
+}
+
+@media (max-width: 991.98px) {
+  .bgimage {
+    min-height: 100svh;
+    display: block;
+    padding-top: 72px;
+    padding-bottom: 24px;
+  }
+
 }

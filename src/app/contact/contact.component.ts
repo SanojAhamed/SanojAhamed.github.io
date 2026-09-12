@@ -21,25 +21,14 @@ export class ContactComponent {
 
   // Contact form submit: posts to Web3Forms or Formspree
   // Works on static hosting (e.g., GitHub Pages)
-  async onSubmitContact(e: Event) {
+  async onSubmitContact(e: Event): Promise<void> {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
     if (!form) return;
-    const fd = new FormData(form);
-
-    // Quick required checks (HTML has required too)
-    const name = (fd.get('name') || '').toString().trim();
-    const email = (fd.get('email') || '').toString().trim();
-    const subject = (fd.get('subject') || '').toString().trim();
-    const message = (fd.get('message') || '').toString().trim();
-    this.fieldErrors = {
-      ...(!name ? { name: 'Please enter your name.' } : {}),
-      ...(!email ? { email: 'Please enter your email address.' } : {}),
-      ...(email && !/^\S+@\S+\.\S+$/.test(email) ? { email: 'Please enter a valid email address.' } : {}),
-      ...(!subject ? { subject: 'Please enter a subject.' } : {}),
-      ...(!message ? { message: 'Please enter a message.' } : {})
-    };
-    if (Object.keys(this.fieldErrors).length > 0) {
+    const formData = new FormData(form);
+    const fields = this.readFormFields(formData);
+    this.fieldErrors = this.validateFields(fields);
+    if (Object.keys(this.fieldErrors).length) {
       this.submitSuccess = false;
       return;
     }
@@ -47,28 +36,8 @@ export class ContactComponent {
     this.isSending = true;
     this.submitSuccess = null;
     try {
-      let ok = false;
-      if (this.contactProvider === 'web3forms' && this.web3formsAccessKey) {
-        fd.append('access_key', this.web3formsAccessKey);
-        fd.append('from_name', name);
-        fd.append('replyto', email);
-        const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: fd });
-        const data = await res.json().catch(() => ({}));
-        ok = !!data?.success;
-      } else if (this.contactProvider === 'formspree' && this.formspreeEndpoint) {
-        const res = await fetch(this.formspreeEndpoint, {
-          method: 'POST',
-          headers: { 'Accept': 'application/json' },
-          body: fd
-        });
-        ok = res.ok;
-      } else {
-        console.warn('Contact form provider not configured. Please set web3formsAccessKey or formspreeEndpoint.');
-        ok = false;
-      }
-
-      this.submitSuccess = ok;
-      if (ok) {
+      this.submitSuccess = await this.submitForm(formData, fields);
+      if (this.submitSuccess) {
         form.reset();
         this.fieldErrors = {};
       }
@@ -78,5 +47,43 @@ export class ContactComponent {
     } finally {
       this.isSending = false;
     }
+  }
+
+  private readFormFields(formData: FormData): Record<string, string> {
+    return ['name', 'email', 'subject', 'message'].reduce((fields, field) => {
+      fields[field] = (formData.get(field) || '').toString().trim();
+      return fields;
+    }, {} as Record<string, string>);
+  }
+
+  private validateFields(fields: Record<string, string>): Record<string, string> {
+    const errors: Record<string, string> = {};
+    if (!fields.name) errors.name = 'Please enter your name.';
+    if (!fields.email) errors.email = 'Please enter your email address.';
+    else if (!/^\S+@\S+\.\S+$/.test(fields.email)) errors.email = 'Please enter a valid email address.';
+    if (!fields.subject) errors.subject = 'Please enter a subject.';
+    if (!fields.message) errors.message = 'Please enter a message.';
+    return errors;
+  }
+
+  private async submitForm(formData: FormData, fields: Record<string, string>): Promise<boolean> {
+    if (this.contactProvider === 'web3forms' && this.web3formsAccessKey) {
+      formData.append('access_key', this.web3formsAccessKey);
+      formData.append('from_name', fields.name);
+      formData.append('replyto', fields.email);
+      const response = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData });
+      const data = await response.json().catch(() => ({}));
+      return !!data?.success;
+    }
+    if (this.contactProvider === 'formspree' && this.formspreeEndpoint) {
+      const response = await fetch(this.formspreeEndpoint, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: formData
+      });
+      return response.ok;
+    }
+    console.warn('Contact form provider not configured. Please set web3formsAccessKey or formspreeEndpoint.');
+    return false;
   }
 }

@@ -34,7 +34,13 @@ export class AppComponent implements AfterViewInit {
   formspreeEndpoint = '';
 
   ngAfterViewInit(): void {
-    // Navbar: add dark bg + shadow after scrolling, and when mobile toggler opens
+    this.setupNavbar();
+    this.setupSkillsToggle();
+    this.setupSmoothScrolling();
+    this.setupActiveNavigation();
+  }
+
+  private setupNavbar(): void {
     const nav = document.querySelector('nav') as HTMLElement | null;
     const navbarToggle = document.querySelector('.navbar-toggler') as HTMLElement | null;
     const navbarCollapse = document.querySelector('.navbar-collapse') as HTMLElement | null;
@@ -85,48 +91,40 @@ export class AppComponent implements AfterViewInit {
 
     document.addEventListener('click', outsideClickHandler);
     document.addEventListener('touchstart', outsideClickHandler);
+  }
 
-    // Skills/Tools section: toggle which list is visible and update button styles
-    const toggleBtnBox = document.querySelector('[data-toggle-box]') as HTMLElement | null;
+  private setupSkillsToggle(): void {
     const toggleBtns = document.querySelectorAll('[data-toggle-btn]');
+    toggleBtns.forEach((btn) => btn.addEventListener('click', (e) => {
+      const label = (e.currentTarget as HTMLElement).textContent?.trim().toLowerCase();
+      this.setSkillsView(label === 'tools' ? 'tools' : 'skills');
+    }));
+  }
+
+  private setSkillsView(view: 'skills' | 'tools'): void {
+    const toggleBtnBox = document.querySelector('[data-toggle-box]') as HTMLElement | null;
     const skillsBox = document.querySelector('[data-skills-box]') as HTMLElement | null;
     const skillsBtn = document.getElementById('skillsTabBtn') as HTMLElement | null;
     const toolsBtn = document.getElementById('toolsTabBtn') as HTMLElement | null;
+    if (!skillsBox || !toggleBtnBox || !skillsBtn || !toolsBtn) return;
 
-    const setSkillsView = (view: 'skills' | 'tools') => {
-      if (!skillsBox || !toggleBtnBox || !skillsBtn || !toolsBtn) return;
+    skillsBox.classList.toggle('active', view === 'tools');
+    toggleBtnBox.classList.toggle('active', view === 'tools');
+    skillsBtn.classList.toggle('active', view === 'skills');
+    toolsBtn.classList.toggle('active', view === 'tools');
 
-      skillsBox.classList.toggle('active', view === 'tools');
-      toggleBtnBox.classList.toggle('active', view === 'tools');
+    const activeButton = view === 'skills' ? skillsBtn : toolsBtn;
+    const inactiveButton = view === 'skills' ? toolsBtn : skillsBtn;
+    activeButton.classList.add('bg-red-600', 'text-white');
+    activeButton.classList.remove('bg-gray-200', 'text-gray-700');
+    inactiveButton.classList.add('bg-gray-200', 'text-gray-700');
+    inactiveButton.classList.remove('bg-red-600', 'text-white');
+    activeButton.setAttribute('aria-pressed', 'true');
+    inactiveButton.setAttribute('aria-pressed', 'false');
+  }
 
-      skillsBtn.classList.toggle('active', view === 'skills');
-      toolsBtn.classList.toggle('active', view === 'tools');
-
-      const toSkills = () => {
-        skillsBtn.classList.add('bg-red-600', 'text-white');
-        skillsBtn.classList.remove('bg-gray-200', 'text-gray-700');
-        toolsBtn.classList.add('bg-gray-200', 'text-gray-700');
-        toolsBtn.classList.remove('bg-red-600', 'text-white');
-        skillsBtn.setAttribute('aria-pressed', 'true');
-        toolsBtn.setAttribute('aria-pressed', 'false');
-      };
-      const toTools = () => {
-        toolsBtn.classList.add('bg-red-600', 'text-white');
-        toolsBtn.classList.remove('bg-gray-200', 'text-gray-700');
-        skillsBtn.classList.add('bg-gray-200', 'text-gray-700');
-        skillsBtn.classList.remove('bg-red-600', 'text-white');
-        skillsBtn.setAttribute('aria-pressed', 'false');
-        toolsBtn.setAttribute('aria-pressed', 'true');
-      };
-      if (view === 'skills') toSkills(); else toTools();
-    };
-
-    toggleBtns.forEach((btn) => btn.addEventListener('click', (e) => {
-      const label = (e.currentTarget as HTMLElement).textContent?.trim().toLowerCase();
-      setSkillsView(label === 'tools' ? 'tools' : 'skills');
-    }));
-
-    // Helpers for smooth scroll with navbar offset
+  private setupSmoothScrolling(): void {
+    const nav = document.querySelector('nav') as HTMLElement | null;
     const getNavHeight = () => {
       const navEl = nav as HTMLElement | null;
       return navEl ? navEl.getBoundingClientRect().height : 72;
@@ -138,7 +136,7 @@ export class AppComponent implements AfterViewInit {
     };
 
     const scrollToSkills = (view: 'skills' | 'tools') => {
-      setSkillsView(view);
+      this.setSkillsView(view);
       const target = view === 'skills'
         ? (document.getElementById('Skills') as HTMLElement | null)
         : ((document.getElementById('SkillsToggle') || document.getElementById('Skills')) as HTMLElement | null);
@@ -185,8 +183,10 @@ export class AppComponent implements AfterViewInit {
         scrollToIdWithOffset(href);
       });
     });
+  }
 
-    // Keep the current section visible in the navbar while the user scrolls.
+  private setupActiveNavigation(): void {
+    const nav = document.querySelector('nav') as HTMLElement | null;
     const navLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('nav a.nav-link[href^="#"]'));
     const sections = navLinks
       .map((link) => document.getElementById(link.getAttribute('href')?.slice(1) || ''))
@@ -207,6 +207,5 @@ export class AppComponent implements AfterViewInit {
     }, { rootMargin: `-${nav?.getBoundingClientRect().height || 72}px 0px -55%`, threshold: [0.1, 0.5, 0.8] });
     sections.forEach((section) => sectionObserver.observe(section));
     setActiveNav('home');
-
   }
 }
